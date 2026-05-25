@@ -13,7 +13,6 @@ type BehavioralTextareaProps = {
   value: string;
   onValueChange: (value: string) => void;
   fieldId: string;
-  pressureDelay?: number;
   enforceThreeSentences?: boolean;
   onFocusField?: (fieldId: string | null) => void;
   rows?: number;
@@ -25,7 +24,6 @@ export function BehavioralTextarea({
   value,
   onValueChange,
   fieldId,
-  pressureDelay = 24,
   enforceThreeSentences = false,
   onFocusField,
   rows = 4,
@@ -75,7 +73,6 @@ export function BehavioralTextarea({
       <PressureTextarea
         required={required}
         rows={rows}
-        pressureDelay={pressureDelay}
         value={value}
         onValueChange={(v) => {
           pingActivity();

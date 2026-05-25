@@ -94,9 +94,6 @@ export function ApplyForm() {
   const totalSteps = 3;
   const flowMode = useMemo(() => computeFlowMode(data), [data]);
   const transition = flowTransition(flowMode);
-  const pressureDelay =
-    flowMode === "rigid" ? 40 : flowMode === "fluid" ? 16 : 26;
-
   const update = (field: keyof FormData, value: string | boolean | null) => {
     setData((prev) => ({ ...prev, [field]: value }));
   };
@@ -215,7 +212,6 @@ export function ApplyForm() {
                       </label>
                       <PressureInput
                         required
-                        pressureDelay={pressureDelay}
                         value={data.firstName}
                         onValueChange={(v) => update("firstName", v)}
                         placeholder="Popescu"
@@ -227,7 +223,6 @@ export function ApplyForm() {
                       </label>
                       <PressureInput
                         required
-                        pressureDelay={pressureDelay}
                         value={data.lastName}
                         onValueChange={(v) => update("lastName", v)}
                         placeholder="Maria"
@@ -240,7 +235,6 @@ export function ApplyForm() {
                     </label>
                     <PressureInput
                       required
-                      pressureDelay={pressureDelay}
                       value={data.telegramUsername}
                       onValueChange={(v) => update("telegramUsername", v)}
                       placeholder="@username"
@@ -252,7 +246,6 @@ export function ApplyForm() {
                     </label>
                     <PressureInput
                       required
-                      pressureDelay={pressureDelay}
                       value={data.university}
                       onValueChange={(v) => update("university", v)}
                       placeholder="UBB — Anul 2"
@@ -264,7 +257,6 @@ export function ApplyForm() {
                     </label>
                     <PressureInput
                       required
-                      pressureDelay={pressureDelay}
                       value={data.hobbies}
                       onValueChange={(v) => update("hobbies", v)}
                       placeholder="Fotografie, debate, hiking..."
@@ -283,7 +275,6 @@ export function ApplyForm() {
                       rows={4}
                       fieldId="selfDescription"
                       enforceThreeSentences
-                      pressureDelay={pressureDelay}
                       value={data.selfDescription}
                       onValueChange={(v) => update("selfDescription", v)}
                       onFocusField={setActiveField}
@@ -349,7 +340,6 @@ export function ApplyForm() {
                         </label>
                         <PressureInput
                           required
-                          pressureDelay={pressureDelay}
                           value={data.experienceDetails}
                           onValueChange={(v) => update("experienceDetails", v)}
                           placeholder="Ce evenimente, ce rol ai avut?"
@@ -368,7 +358,6 @@ export function ApplyForm() {
                       required
                       rows={5}
                       fieldId="egoScenario"
-                      pressureDelay={pressureDelay}
                       value={data.egoScenario}
                       onValueChange={(v) => update("egoScenario", v)}
                       onFocusField={setActiveField}
@@ -407,7 +396,6 @@ export function ApplyForm() {
                       required
                       rows={6}
                       fieldId="crisisScenario"
-                      pressureDelay={pressureDelay}
                       value={data.crisisScenario}
                       onValueChange={(v) => update("crisisScenario", v)}
                       onFocusField={setActiveField}
