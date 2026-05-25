@@ -240,9 +240,47 @@ body {
   }
 }
 
+/* Assessment chamber — adaptive psychological atmosphere */
+.assessment-chamber {
+  position: relative;
+  transition:
+    filter 0.6s ease,
+    color 0.5s ease;
+}
+
+.assessment-chamber.flow-rigid {
+  filter: saturate(0.82) brightness(0.94);
+}
+
+.assessment-chamber.flow-rigid .glass-panel,
+.assessment-chamber.flow-rigid.chamber-panel {
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.assessment-chamber.flow-rigid .premium-input:focus {
+  animation-duration: 2.2s;
+  box-shadow:
+    0 0 0 1px rgba(140, 150, 170, 0.2),
+    0 0 12px rgba(120, 130, 150, 0.08);
+}
+
+.assessment-chamber.flow-fluid {
+  filter: saturate(1.05) brightness(1.02);
+}
+
+.assessment-chamber.flow-fluid .glass-panel,
+.assessment-chamber.flow-fluid.chamber-panel {
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.38),
+    0 0 56px rgba(126, 232, 199, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
 /* Adaptive flow: rigid vs fluid */
 .flow-rigid .flow-motion {
-  --flow-duration: 0.22s;
+  --flow-duration: 0.18s;
   --flow-ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -252,7 +290,7 @@ body {
 }
 
 .flow-fluid .flow-motion {
-  --flow-duration: 0.55s;
+  --flow-duration: 0.58s;
   --flow-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -261,11 +299,258 @@ body {
 }
 
 .flow-rigid .glass-panel {
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(16px);
 }
 
 .flow-fluid .glass-panel {
-  backdrop-filter: blur(28px);
+  backdrop-filter: blur(30px);
+}
+
+/* AI presence */
+.ai-presence {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 1.25rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.ai-presence-core {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ai-presence-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(126, 232, 199, 0.85);
+  box-shadow: 0 0 10px rgba(126, 232, 199, 0.5);
+  animation: ai-pulse 2.4s ease-in-out infinite;
+}
+
+.ai-presence--rigid .ai-presence-dot {
+  background: rgba(160, 170, 190, 0.7);
+  box-shadow: 0 0 6px rgba(140, 150, 170, 0.25);
+  animation-duration: 1.6s;
+}
+
+.ai-presence--fluid .ai-presence-dot {
+  animation-duration: 3.2s;
+}
+
+.ai-presence--processing .ai-presence-dot {
+  background: rgba(201, 169, 98, 0.9);
+  box-shadow: 0 0 14px rgba(201, 169, 98, 0.45);
+  animation: ai-pulse-fast 0.9s ease-in-out infinite;
+}
+
+.ai-presence-monitor {
+  color: rgba(201, 169, 98, 0.55);
+  font-size: 0.6rem;
+}
+
+@keyframes ai-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes ai-pulse-fast {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Constraint meter */
+.constraint-meter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.4rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.constraint-meter--empty,
+.constraint-meter--under {
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.constraint-meter--exact {
+  background: rgba(126, 232, 199, 0.08);
+  color: rgba(126, 232, 199, 0.75);
+  border: 1px solid rgba(126, 232, 199, 0.2);
+}
+
+.constraint-meter--over {
+  background: rgba(248, 113, 113, 0.1);
+  color: rgba(248, 113, 113, 0.9);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  animation: constraint-alert 1.2s ease-in-out infinite;
+}
+
+@keyframes constraint-alert {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+
+.constraint-meter-icon {
+  font-size: 0.75rem;
+}
+
+/* Behavioral feedback layer */
+.behavioral-field {
+  position: relative;
+}
+
+.behavioral-feedback-layer {
+  min-height: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.behavioral-feedback {
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  line-height: 1.45;
+  font-style: italic;
+}
+
+.behavioral-feedback--neutral {
+  color: rgba(255, 255, 255, 0.32);
+}
+
+.behavioral-feedback--stable {
+  color: rgba(126, 232, 199, 0.55);
+}
+
+.behavioral-feedback--warn {
+  color: rgba(201, 169, 98, 0.65);
+}
+
+.behavioral-feedback--alert {
+  color: rgba(248, 113, 113, 0.75);
+}
+
+.behavioral-idle-hint {
+  margin-top: 0.35rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.22);
+  font-style: italic;
+  animation: idle-fade-in 0.6s ease;
+}
+
+@keyframes idle-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Submit evaluation sequence */
+.submit-evaluation-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  background: rgba(8, 8, 8, 0.82);
+  backdrop-filter: blur(8px);
+}
+
+.submit-evaluation-panel {
+  text-align: center;
+  padding: 2rem;
+  max-width: 22rem;
+}
+
+.submit-evaluation-scan {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 169, 98, 0.35);
+  border-top-color: rgba(126, 232, 199, 0.8);
+  animation: submit-spin 1.2s linear infinite;
+}
+
+@keyframes submit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.submit-evaluation-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(201, 169, 98, 0.5);
+  margin-bottom: 0.75rem;
+}
+
+.submit-evaluation-phase {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.75);
+  min-height: 1.5rem;
+}
+
+.submit-evaluation-progress {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 1.25rem;
+}
+
+.submit-evaluation-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.submit-evaluation-dot--active {
+  background: rgba(201, 169, 98, 0.85);
+  transform: scale(1.2);
 }
 
 .premium-btn {

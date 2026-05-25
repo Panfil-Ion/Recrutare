@@ -27,7 +27,7 @@ export default function ApplyPage() {
           </p>
         </header>
 
-        <div className="glass-panel chamber-panel rounded-2xl p-8 sm:p-10">
+        <div className="glass-panel chamber-panel assessment-chamber-shell rounded-2xl p-8 sm:p-10">
           <ApplyForm />
         </div>
       </div>

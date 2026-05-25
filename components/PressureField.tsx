@@ -83,7 +83,8 @@ export function PressureTextarea({
   className = "premium-input resize-none",
   pressureDelay = 22,
   ...rest
-}: BaseProps & Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, "value" | "onChange">) {
+}: BaseProps &
+  Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, "value" | "onChange">) {
   const [typing, setTyping] = useState(false);
   const display = usePressureTyping(value, pressureDelay);
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
