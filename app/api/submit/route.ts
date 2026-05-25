@@ -1,4 +1,4 @@
-import { evaluateCandidate } from "@/lib/openai";
+import { evaluateCandidate, serializeProfil } from "@/lib/openai";
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
         crisisScenario: payload.crisisScenario,
         scorGeneral: evaluation.scor_general,
         verdict: evaluation.verdict,
-        profilPsihologic: evaluation.profil_psihologic,
+        profilPsihologic: serializeProfil(evaluation),
       },
     });
 

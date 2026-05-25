@@ -3,6 +3,7 @@ import { ApplyForm } from "@/components/ApplyForm";
 export default function ApplyPage() {
   return (
     <main className="relative min-h-screen overflow-hidden px-4 py-16 sm:px-6">
+      <div className="ambient-canvas" aria-hidden />
       <div
         className="ambient-glow -top-32 left-1/4 h-96 w-96 bg-[#c9a962]"
         aria-hidden
@@ -26,7 +27,7 @@ export default function ApplyPage() {
           </p>
         </header>
 
-        <div className="glass-panel rounded-2xl p-8 sm:p-10">
+        <div className="glass-panel chamber-panel rounded-2xl p-8 sm:p-10">
           <ApplyForm />
         </div>
       </div>
